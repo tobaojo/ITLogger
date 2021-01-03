@@ -1,6 +1,7 @@
 <?php
 require('config/db.php');
 require('config/config.php');
+include('inc/header.php');
 
 if(isset($_POST['submit'])){
     
@@ -21,7 +22,7 @@ if(isset($_POST['submit'])){
 
 ?>
 
-<?php include('inc/header.php')?>
+
 <div class="container m-2">
 <h1>Log Ticket</h1>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" class="">

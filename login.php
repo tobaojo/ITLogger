@@ -2,28 +2,22 @@
   
 require('config/db.php');
 require('config/config.php');
+include('inc/header.php');
 
 if(isset($_POST['submit'])){
     
-  
-
-    
-    
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
-
-
 
     $query = "SELECT * FROM Users WHERE username = '$username' AND password = '$password'";  
     $result = mysqli_query($conn, $query);
     $result_check = mysqli_num_rows($result);
 
     if($result_check > 0 ){
-        // header('location: '.ROOT_URL.'login.php');
+      
+      header('location:'.ROOT_URL.'loggedin.php');
         while($row = mysqli_fetch_assoc($result)){
-            session_start();
-            $_SESSION['name'] = htmlentities($_POST['username']);
-            $name = $_SESSION['name'];
+        $_SESSION['username'] = htmlentities($username);
         }
     } else {
         echo 'error'.mysqli_error($conn);
@@ -43,10 +37,9 @@ if(isset($_POST['submit'])){
 
 ?>
 
-<?php include('inc/header.php')?>
+
 <div class="container m-2">
 <h1>Login</h1>
-<h4>Hello <? echo $name?></h4>
 <form method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>" class="">
   <fieldset class="m-1">
     <legend>Sign into your ITLogger account: </legend>
@@ -63,5 +56,6 @@ if(isset($_POST['submit'])){
     <button name="submit" type="submit" class="btn btn-primary m-4">Submit</button>
   </fieldset>
 </form>
+<h5 class="m-2">Don't have an account? Sign up  <a href="<? echo ROOT_URL;?>signup.php">here.</a></h5>
   </div>
 <?php include('inc/footer.php')?>
