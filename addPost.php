@@ -6,15 +6,17 @@ include('inc/header.php');
 if(isset($_POST['submit'])){
     
     $title = mysqli_real_escape_string($conn, $_POST['title']);
-    $author = mysqli_real_escape_string($conn, $_POST['author']);
+    // $author = mysqli_real_escape_string($conn, $_POST['author']);
     $body = mysqli_real_escape_string($conn, $_POST['body']);
+    $userID = $_SESSION['userID'];
+    var_dump($userID);
 
-    $query = "INSERT INTO posts(title, author, body) VALUES('$title', '$author', '$body' )";  
+    $query = "INSERT INTO posts(userID, title, body) VALUES('$userID','$title', '$body' )";  
 
     if(mysqli_query($conn, $query)){
         header('location: '.ROOT_URL.'');
     } else {
-        echo 'error'.mysql_error($conn);
+        echo 'error'.mysqli_error($conn);
     }
 }
 
@@ -29,10 +31,10 @@ if(isset($_POST['submit'])){
   <fieldset class="m-1">
     <legend>Please fill out the form below: </legend>
     </div>
-    <div class="form-group m-4">
+    <!-- <div class="form-group m-4">
       <label for="author">Name</label>
       <input name="author" type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Name">
-    </div>
+    </div> -->
     <div class="form-group m-4">
       <label for="title">Title</label>
       <input name="title" type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Subject">

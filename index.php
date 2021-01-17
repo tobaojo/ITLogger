@@ -2,8 +2,10 @@
 require('config/db.php');
 require('config/config.php');
 
-$query = 'select * from posts order by created_at desc';
+$query = 'SELECT posts.postID, Posts.title,Posts.body,Posts.created_at,users.userID, users.username FROM Posts INNER join Users on Posts.userID = Users.userID order by created_at DESC';
 
+// SELECT posts.postID, users.userID, users.username FROM Posts INNER join Users on Posts.userID = Users.userID
+// SELECT posts.postID, Posts.title,Posts.body,users.userID, users.username FROM Posts INNER join Users on Posts.userID = Users.userID order by created_at desc
 $res = mysqli_query($conn, $query);
 
 $posts = mysqli_fetch_all($res, MYSQLI_ASSOC);
@@ -27,10 +29,10 @@ mysqli_close($conn);
     <div class="card-body">
     <h3 class="card-title"><?php echo $post['title'];?></h3>
     <hr>
-    <h6 class="card-subtitle mb-2 text-muted">Created on: <?php echo $post['created_at']; ?> <br>By: <?php echo $post['author']; ?></h6>
+    <h6 class="card-subtitle mb-2 text-muted">Created on: <?php echo $post['created_at']; ?> <br>By: <?php echo $post['username']; ?></h6>
     
     <p class="card-text"><?php echo $post['body']; ?></p>
-    <a class="btn btn-secondary" href="<?php echo ROOT_URL;?>post.php?id=<?php echo $post['id'];?>">Read More</a>
+    <a class="btn btn-secondary" href="<?php echo ROOT_URL;?>post.php?id=<?php echo $post['postID'];?>">Read More</a>
     </div>
     </div>
     

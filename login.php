@@ -18,6 +18,7 @@ if(isset($_POST['submit'])){
       header('location:'.ROOT_URL.'loggedin.php');
         while($row = mysqli_fetch_assoc($result)){
         $_SESSION['username'] = htmlentities($username);
+        $_SESSION['userID'] = $row['userID'];
         }
     } else {
         echo 'error'.mysqli_error($conn);
