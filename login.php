@@ -22,6 +22,7 @@ if(isset($_POST['submit'])){
         }
     } else {
         echo 'error'.mysqli_error($conn);
+      
     }
 }
 
@@ -34,6 +35,10 @@ if(isset($_POST['submit'])){
 //     }
 // }
 
+if(isset($_SESSION)){
+  session_unset();
+  session_destroy();
+}
 
 
 ?>

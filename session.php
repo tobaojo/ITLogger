@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$name = $_SESSION['name'];
+$name = $_SESSION['username'];
 $user_id = $_SESSION['userID'];
 
 // session_unset();
@@ -11,4 +11,4 @@ $user_id = $_SESSION['userID'];
 ?>
 
 <h1><h4>Hello <? echo $name?></h4></h1>
-<h1><h4>Hello <? echo $user_id?></h4></h1>
+<h4>Hello <? echo $user_id?></h4>

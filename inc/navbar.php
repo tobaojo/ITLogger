@@ -31,7 +31,7 @@
   </ul>
   <div class="nav navbar-right">
     <li class="nav-item active">
-      <a class="nav-link" href="<? echo ROOT_URL;?>login.php">Login/Sign Up</a>
+      <a class="nav-link" id ="login" href="<? echo ROOT_URL;?>login.php">Login/Sign Up</a>
     </li>
     </div>
 </div>
